@@ -1,0 +1,61 @@
+SHOW DATABASES;
+CREATE DATABASE IF NOT EXISTS marks_analysis;
+USE marks_analysis;
+SHOW TABLES;
+
+CREATE TABLE students (
+student_id INT,
+student_name VARCHAR(50),
+city VARCHAR(50),
+age INT
+);
+
+CREATE TABLE marks (
+student_id INT,
+subject VARCHAR(50),
+marks INT
+);
+
+INSERT INTO students VALUES
+(1,'Asha','Pune',20),
+(2,'Rahul','Mumbai',21),
+(3,'Neha','Pune',19),
+(4,'Amit','Delhi',22),
+(5,'Sneha','Mumbai',20);
+
+INSERT INTO marks VALUES
+(1,'SQL',85),
+(1,'Python',78),
+(2,'SQL',90),
+(2,'Python',88),
+(3,'SQL',70),
+(3,'Python',65),
+(4,'SQL',60),
+(4,'Python',72),
+(5,'SQL',95),
+(5,'Python',91);
+
+
+select * from students;
+
+##Total Marks per Student
+SELECT student_id, SUM(marks) AS total_marks
+FROM marks
+GROUP BY student_id;
+
+##Calculate average marks per students
+SELECT student_id, AVG(marks) as avg_marks
+FROM marks
+GROUP BY student_id; 
+
+##show top performing students
+SELECT student_id, SUM(marks) AS total_marks
+FROM marks
+GROUP BY student_id
+ORDER BY total_marks DESC
+LIMIT 1;
+
+##show highest marks in each subject
+SELECT subject , MAX(marks) as highest_marks
+from marks
+GROUP BY subject;
