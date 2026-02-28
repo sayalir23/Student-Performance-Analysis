@@ -58,4 +58,5 @@ LIMIT 1;
 ##show highest marks in each subject
 SELECT subject , MAX(marks) as highest_marks
 from marks
+
 GROUP BY subject;
